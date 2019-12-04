@@ -22,12 +22,24 @@ fun <T : Comparable<T>> Two<T>.sort() : Two<T> {
     }
 }
 
+fun <T> Iterable<T>.toTwo() : Two<T> {
+    val total = this.toList()
+    return Two(total[0], total[1])
+}
+
 data class Two<T>(val left : T, val right : T) {
 
     fun <R> map(transform : (T) -> R) : Two<R> {
         return Two(transform(left), transform(right))
     }
 
+    fun andSwapped() : Two<Two<T>>{
+        return Two(this, this.swap())
+    }
+
+    fun toList() : List<T> {
+        return listOf(left, right)
+    }
 
     operator fun invoke(side: Side) : T{
         return when(side){
