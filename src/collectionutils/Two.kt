@@ -22,6 +22,23 @@ fun <T : Comparable<T>> Two<T>.sort() : Two<T> {
     }
 }
 
+/**
+ * This is quite ugly, but hey!
+ */
+fun <T> List<T>.chain() : MutableList<Two<T>> {
+    val result = emptyList<Two<T>>().toMutableList()
+    if (this.size <= 1) return result
+
+    var left = this.first()
+
+    for (right in this.drop(1)){
+        result.add(Two(left, right))
+        left = right
+    }
+    return result
+}
+
+
 fun <T> Iterable<T>.toTwo() : Two<T> {
     val total = this.toList()
     return Two(total[0], total[1])
