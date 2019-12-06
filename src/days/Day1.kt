@@ -14,9 +14,9 @@ class Day1 : Day(1) {
 
     fun getFuel(m : Int) : Int{
         val f = m / 3 - 2
-        return when(f.split()){
-            Negative, Zero -> 0
-            Positive -> f + getFuel(f)
+        return when(f.compareZero()){
+            Less, Equal -> 0
+            Greater -> f + getFuel(f)
         }
     }
 
