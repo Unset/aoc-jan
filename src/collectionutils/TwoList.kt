@@ -34,6 +34,9 @@ fun <T> Iterable<T>.toTwo() : TwoList<T> {
 
 open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoCollection<T>{
 
+    override operator fun component1() = left
+    override operator fun component2() = right
+
     override fun toString() = "$left list $right"
 
     override fun equals(other: Any?) = if (other is TwoList<*>) left == other.left && right == other.right else false
@@ -50,7 +53,11 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
         return TwoList(this, this.swap())
     }
 
-    fun toList() : List<T> {
+    override fun toList() : TwoList<T> {
+        return this
+    }
+
+    private fun toNormalList() : List<T> {
         return listOf(left, right)
     }
 
@@ -108,7 +115,7 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
 
     override fun isEmpty() = false
 
-    override fun iterator(): Iterator<T> = toList().iterator()
+    override fun iterator(): Iterator<T> = toNormalList().iterator()
 
     override fun lastIndexOf(element: T) = when(element) {
         right -> 1
@@ -116,11 +123,11 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
         else -> -1
     }
 
-    override fun listIterator() = toList().listIterator()
+    override fun listIterator() = toNormalList().listIterator()
 
-    override fun listIterator(index: Int) = toList().listIterator(index)
+    override fun listIterator(index: Int) = toNormalList().listIterator(index)
 
-    override fun subList(fromIndex: Int, toIndex: Int) = toList().subList(fromIndex, toIndex)
+    override fun subList(fromIndex: Int, toIndex: Int) = toNormalList().subList(fromIndex, toIndex)
 
 
 }

@@ -1,8 +1,10 @@
 package collectionutils
 
 class TwoSet<E> private constructor(private val list : TwoList<E>) : TwoCollection<E>, Set<E> {
+    override fun component1() = list.left
+    override fun component2() = list.right
 
-    fun toList() = list
+    override fun toList() = list
 
     override val size = 2
 
