@@ -1,6 +1,9 @@
 package days
 
-import whenever.*
+import xpair.Equal
+import xpair.Greater
+import xpair.Less
+import xpair.compareZero
 
 class Day1 : Day(1) {
 

@@ -23,11 +23,9 @@ data class MachineState(val tape : List<Int>, val position : Int = 0, val done :
         get() = tape[position + 1]
 
     fun jumpIf(condition : (Int) -> Boolean): MachineState{
-        return MachineState(
-            tape = tape,
-            position = if (condition(getArgument(0))) getArgument(1) else position + 3,
-            input = input,
-            output = output)
+        return copy(
+            position = if (condition(getArgument(0))) getArgument(1) else position + 3
+            )
     }
 
 
@@ -42,22 +40,16 @@ data class MachineState(val tape : List<Int>, val position : Int = 0, val done :
             8 -> applyMath {a, b -> if (a==b) 1 else 0}
 
 
-            3 -> MachineState(
+            3 -> copy(
                 tape = tape.setIndex(firstArg, input.first()),
                 position = position + 2,
-                input = input.drop(1),
-                output = output)
-            4 -> MachineState(
-                tape = tape,
+                input = input.drop(1))
+            4 -> copy(
                 position = position + 2,
-                input = input,
                 output = output + listOf(tape[firstArg]))
-            99 -> MachineState(
-                tape = tape,
+            99 -> copy(
                 position = position + 1,
-                done = true,
-                input = input,
-                output = output)
+                done = true)
             else -> throw Exception("Unknown opcode $opcode")
         }
     }
@@ -69,9 +61,7 @@ data class MachineState(val tape : List<Int>, val position : Int = 0, val done :
     }
 
     fun applyMath(operation : (Int, Int) -> Int) : MachineState{
-        return MachineState(
-            input = input,
-            output = output,
+        return copy(
             position = position + 4,
             tape =
             operation(getArgument(0), getArgument(1))

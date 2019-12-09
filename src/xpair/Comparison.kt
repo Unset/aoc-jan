@@ -1,4 +1,4 @@
-package whenever
+package xpair
 
 sealed class Comparison() : Comparable<Comparison> {
 
@@ -29,7 +29,7 @@ object Less : Comparison() {
 
 
 
-fun fromInt(i : Int) : Comparison{
+fun fromInt(i : Int) : Comparison {
     return when {
         i>0 -> Greater
         i<0 -> Less
@@ -37,11 +37,7 @@ fun fromInt(i : Int) : Comparison{
     }
 }
 
-fun String.compareZero() : Comparison? {
-    return this.toIntOrNull()?.compareZero()
-}
-
-infix fun <T : Comparable<T>> T.compare(other: T) : Comparison{
+infix fun <T : Comparable<T>> T.compare(other: T) : Comparison {
     return fromInt(this.compareTo(other))
 }
 
