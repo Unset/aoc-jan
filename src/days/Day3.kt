@@ -3,6 +3,7 @@ package days
 
 import collectionutils.*
 import whenever.*
+import xpair.*
 import java.lang.Exception
 import kotlin.math.abs
 import kotlin.math.absoluteValue
@@ -10,7 +11,7 @@ import kotlin.math.absoluteValue
 
 class Day3 : Day(3) {
 
-    val wires by lazy {inputList.toTwo().map {
+    val wires by lazy {inputList.toTwo().both {
         it.split(',')
             .map { getLineDelta(it) }
             .toWire()
@@ -18,8 +19,8 @@ class Day3 : Day(3) {
 
     override fun partOne(): String {
 
-        val intersection = wires.andSwapped().map {
-            getClosestIntersection(wires.left.hori, wires.right.verti)
+        val intersection = wires.andSwapped().both {
+            getClosestIntersection(wires.first.hori, wires.second.verti)
         }.toList().closest()
 
 
@@ -27,8 +28,8 @@ class Day3 : Day(3) {
     }
 
     override fun partTwo(): String {
-        val shortest = wires.andSwapped().map {
-            getShortestIntersection(wires.left.hori, wires.right.verti)
+        val shortest = wires.andSwapped().both {
+            getShortestIntersection(wires.first.hori, wires.second.verti)
         }.toList().min()
 
         return shortest.toString()
@@ -41,7 +42,7 @@ class Day3 : Day(3) {
     fun Pos?.getHamming() : Int {
         return when (this){
             Pos(0,0), null -> Int.MAX_VALUE
-            else -> this.left.absoluteValue + this.right.absoluteValue
+            else -> this.first.absoluteValue + this.second.absoluteValue
         }
     }
 
@@ -55,14 +56,14 @@ class Day3 : Day(3) {
 
 
     sealed class Line(open val from : Pos, val to : Pos, open val previousSteps : Int){
-        data class Horizontal(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setLeft {left + length}, previousSteps) {
-            val y : Int = from.right
-            val x : IntRange = Pos(from.left, to.left).toRange()
+        data class Horizontal(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setFirst(from.first + length), previousSteps) {
+            val y : Int = from.second
+            val x : IntRange = Pos(from.first, to.first).toRange()
         }
 
-        data class Vertical(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setRight{right + length}, previousSteps){
-            val x : Int = from.left
-            val y : IntRange = Pos(from.right, to.right).toRange()
+        data class Vertical(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setSecond(from.second + length), previousSteps){
+            val x : Int = from.first
+            val y : IntRange = Pos(from.second, to.second).toRange()
         }
 
     }
@@ -93,9 +94,9 @@ class Day3 : Day(3) {
     fun getIntersectionByLength(horizontal : Line.Horizontal, vertical : Line.Vertical) : Int {
         return if (vertical.x in horizontal.x && horizontal.y in vertical.y)
             horizontal.previousSteps +
-                    abs(horizontal.from.left - vertical.x) +
+                    abs(horizontal.from.first - vertical.x) +
                     vertical.previousSteps +
-                    abs(vertical.from.right - horizontal.y)
+                    abs(vertical.from.second - horizontal.y)
         else
             Int.MAX_VALUE
     }

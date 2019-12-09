@@ -2,6 +2,7 @@ package days
 
 import collectionutils.*
 import whenever.*
+import xpair.*
 import kotlin.math.hypot
 
 class Day6 : Day(6) {
@@ -22,7 +23,7 @@ class Day6 : Day(6) {
     override fun partTwo(): String {
 
         val paths = ("YOU" two "SAN")
-            .map {orbitList.find(it).path(orbitList)}
+            .both {orbitList.find(it).path(orbitList)}
 
         val commonPathLength = paths
             .zip()
@@ -31,7 +32,7 @@ class Day6 : Day(6) {
 
         println(commonPathLength)
 
-        val totalLength = paths.map {it.count()}.sum()
+        val totalLength = paths.both {it.count()}.toList().sum()
 
         val answer = totalLength - (2 * commonPathLength) - 2
 
@@ -46,7 +47,7 @@ class Day6 : Day(6) {
 
         fun Iterable<Orbit>.find(name : String) = first {it.name == name}
 
-        fun TwoList<String>.toOrbit() = Orbit(right, left unelvis "COM")
+        fun Two<String>.toOrbit() = Orbit(second, first unelvis "COM")
 
     }
 
