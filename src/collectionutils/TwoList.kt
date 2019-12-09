@@ -49,6 +49,10 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
         return TwoList(transform(left), transform(right))
     }
 
+    fun <R> merge(transform : (left : T, right: T) -> R) : R {
+        return transform(left, right)
+    }
+
     fun andSwapped() : TwoList<TwoList<T>>{
         return TwoList(this, this.swap())
     }
@@ -68,9 +72,13 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
         }
     }
 
+    fun toPair() = left to right
+
     fun swap() : TwoList<T> {
         return TwoList(right, left)
     }
+
+    fun areEqual() = left == right
 
     fun set(side : Side, value : T) : TwoList<T>{
         return when(side){
@@ -130,4 +138,13 @@ open class TwoList<T>(open val left : T, open val right : T) : List<T>, TwoColle
     override fun subList(fromIndex: Int, toIndex: Int) = toNormalList().subList(fromIndex, toIndex)
 
 
+
 }
+
+infix fun <T> T.two(other : T) = TwoList(this, other)
+
+fun <T> TwoList<List<T>>.zip() : List<TwoList<T>> {
+    return (left zip right).map {it.toTwo()}
+}
+
+fun <T> Pair<T,T>.toTwo() = first two second
