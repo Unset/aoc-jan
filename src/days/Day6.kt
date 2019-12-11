@@ -2,12 +2,11 @@ package days
 
 import collectionutils.*
 import xpair.*
-import kotlin.math.hypot
 
 class Day6 : Day(6) {
 
     val orbitList by lazy {
-        inputList.map { it.split(')').toTwo().toOrbit() }
+        inputList.map { it.split(')').onlyTwo().toOrbit() }
     }
 
     override fun partOne(): String {

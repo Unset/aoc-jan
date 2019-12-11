@@ -1,21 +1,20 @@
 package xpair
 
-fun <T> List<T>.chain() : MutableList<Two<T>> {
-    val result = emptyList<Two<T>>().toMutableList()
-    if (this.size <= 1) return result
-
-    var left = this.first()
-
-    for (right in this.drop(1)){
-        result.add(Two(left, right))
-        left = right
-    }
-    return result
+fun <T> List<T>.chain() : List<Two<T>> = when (size){
+        0,1 -> emptyList()
+        else ->
+            ArrayList<Two<T>>(size - 1).also {
+                var left = this.first()
+                for (right in drop(1)){
+                    it.add(left two right)
+                    left = right
+                }
+            }
 }
 
 
 
-fun <E> Iterable<E>.toTwo() : Two<E> {
+fun <E> Iterable<E>.onlyTwo() : Two<E> {
     val total = this.toList()
     return Two(total[0], total[1])
 }

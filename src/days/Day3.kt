@@ -10,7 +10,7 @@ import kotlin.math.absoluteValue
 
 class Day3 : Day(3) {
 
-    val wires by lazy {inputList.toTwo().both {
+    val wires by lazy {inputList.onlyTwo().both {
         it.split(',')
             .map { getLineDelta(it) }
             .toWire()

@@ -13,6 +13,15 @@ data class MachineState(val tape : List<Int>, val position : Int = 0, val done :
         return machine
     }
 
+    fun runTillOutput() : MachineState{
+        var machine = this.copy(output = emptyList())
+        while (true){
+            if (machine.done || machine.output.isNotEmpty()) return machine
+            println(machine)
+            machine = machine.next()
+        }
+    }
+
     val opcode : Int
         get() = tape[position] % 100
 
