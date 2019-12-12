@@ -23,3 +23,5 @@ fun <E> Two<E>.areEqual() = first == second
 operator fun <E> Two<E>.contains(element : E) = first == element || second == element
 
 fun <E> Two<E>.containsAll(elements : Collection<E>) = elements.all {it in this}
+
+fun Pair<String, String>.toCharList() = both {it.toCharArray().toList()}

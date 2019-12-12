@@ -1,7 +1,6 @@
 package days
 
 import december.MachineState
-import whenever.*
 
 class Day2 : Day(2) {
 
