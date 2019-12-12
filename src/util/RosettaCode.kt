@@ -13,3 +13,5 @@ fun <T> permute(input: List<T>): List<List<T>> {
     }
     return perms
 }
+
+fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
