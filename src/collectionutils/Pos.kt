@@ -16,3 +16,7 @@ operator fun Pos.contains(some : Int) : Boolean{
 operator fun Pos.minus(other : Pos) : Pos{
     return Pos(this.first - other.first, this.second - other.second)
 }
+
+operator fun Pos.plus(other : Pos) : Pos{
+    return Pos(this.first + other.first, this.second + other.second)
+}
