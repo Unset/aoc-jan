@@ -29,6 +29,14 @@ data class BigMachine(val tape : Tape, val position : BigInteger = BigInteger.ZE
         }
     }
 
+    fun runTillTwoOutput() : BigMachine{
+        var machine = this.copy(output = emptyList())
+        while (true){
+            if (machine.done || machine.output.size == 2) return machine
+            machine = machine.next()
+        }
+    }
+
     val opcode : Int
         get() = tape[position].toInt() % 100
 
