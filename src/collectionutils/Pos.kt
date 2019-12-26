@@ -1,9 +1,9 @@
 package collectionutils
 
-import xpair.Two
+import xpair.Duo
 import xpair.sort
 
-typealias Pos = Two<Int>
+typealias Pos = Duo<Int>
 
 fun Pos.toRange() : IntRange {
     return this.sort().let {IntRange(it.first, it.second)}

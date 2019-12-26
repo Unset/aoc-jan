@@ -1,16 +1,16 @@
 package xpair
 
-fun <E : Comparable<E>> Two<E>.sort() : Two<E> {
+fun <E : Comparable<E>> Duo<E>.sort() : Duo<E> {
     return when (first compare second){
         Greater -> swap()
         Equal, Less -> this
     }
 }
 
-fun <E : Comparable<E>> Two<E>.max() : E {
+fun <E : Comparable<E>> Duo<E>.max() : E {
     return toList().max()!!
 }
 
-fun <E : Comparable<E>> Two<E>.min() : E {
+fun <E : Comparable<E>> Duo<E>.min() : E {
     return toList().min()!!
 }

@@ -1,25 +1,24 @@
 package xpair
 
-fun <T> List<T>.chain() : List<Two<T>> = when (size){
+fun <T> List<T>.chain() : List<Duo<T>> = when (size){
         0,1 -> emptyList()
         else ->
-            emptyList<Two<T>>().toMutableList().also {
+            emptyList<Duo<T>>().toMutableList().also {
                 var left = this.first()
                 for (right in drop(1)){
-                    it.add(left two right)
+                    it.add(left duo right)
                     left = right
                 }
             }
 }
 
 
-
-fun <E> Iterable<E>.onlyTwo() : Two<E> {
-    val total = this.toList()
-    return Two(total[0], total[1])
+fun Int.getCombinations() : List<Duo<Int>> = when (this compare 1) {
+    Less, Equal -> emptyList<Duo<Int>>()
+    Greater -> (this-1).getCombinations() + (0 until (this-1)).map {it duo this-1}
 }
 
-fun <T> Iterable<T>.reduceTwo(operation : (Two<T>) -> T): T {
-    return this.reduce{acc, t -> operation(acc two t)}
+fun <T> Iterable<T>.reduceTwo(operation : (Duo<T>) -> T): T {
+    return this.reduce{acc, t -> operation(acc duo t)}
 }
 

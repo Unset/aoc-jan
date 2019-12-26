@@ -3,7 +3,6 @@ package days
 import collectionutils.Pos
 import collectionutils.minus
 import collectionutils.plus
-import december.MachineState
 import util.gcd
 import xpair.*
 import kotlin.math.absoluteValue
@@ -16,18 +15,18 @@ typealias QCode = Compair<Int,Double>
 val baseStation = Pos(30, 34)
 
 fun Pos.getQuadrantCode() : QCode = when (both {it.compareZero()}){
-    Two(Equal, Less) -> Pair(0, 0.0)
-    Two(Greater, Less) -> Pair(1, getUnit().second)
-    Two(Greater, Equal) -> Pair(2, 0.0)
-    Two(Greater, Greater) -> Pair(3, getUnit().second)
-    Two(Equal, Greater) -> Pair(4, 0.0)
-    Two(Less, Greater) -> Pair(5, -getUnit().second)
-    Two(Less, Equal) -> Pair(6, 0.0)
-    Two(Less, Less) -> Pair(7, -getUnit().second)
+    Duo(Equal, Less) -> Pair(0, 0.0)
+    Duo(Greater, Less) -> Pair(1, getUnit().second)
+    Duo(Greater, Equal) -> Pair(2, 0.0)
+    Duo(Greater, Greater) -> Pair(3, getUnit().second)
+    Duo(Equal, Greater) -> Pair(4, 0.0)
+    Duo(Less, Greater) -> Pair(5, -getUnit().second)
+    Duo(Less, Equal) -> Pair(6, 0.0)
+    Duo(Less, Less) -> Pair(7, -getUnit().second)
     else -> throw Exception("Unknown quadrant")
 }.toCompair()
 
-fun Pos.getUnit() : Two<Double> {
+fun Pos.getUnit() : Duo<Double> {
     val diagonal = sqrt(both{ it * it}.let {it.first + it.second}.toDouble())
     return both {it / diagonal}
 }

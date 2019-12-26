@@ -33,7 +33,7 @@ class Day8 : Day(8) {
         return ""
     }
 
-    fun Two<Char>.calculateForeground() : Char{
+    fun Duo<Char>.calculateForeground() : Char{
         return when (first){
             '0' -> '0'
             '1' -> '1'

@@ -10,7 +10,7 @@ import kotlin.math.absoluteValue
 
 class Day3 : Day(3) {
 
-    val wires by lazy {inputList.onlyTwo().both {
+    val wires by lazy {inputList.toDuo().both {
         it.split(',')
             .map { getLineDelta(it) }
             .toWire()
@@ -55,12 +55,12 @@ class Day3 : Day(3) {
 
 
     sealed class Line(open val from : Pos, val to : Pos, open val previousSteps : Int){
-        data class Horizontal(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setFirst(from.first + length), previousSteps) {
+        data class Horizontal(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.copy(first = from.first + length), previousSteps) {
             val y : Int = from.second
             val x : IntRange = Pos(from.first, to.first).toRange()
         }
 
-        data class Vertical(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.setSecond(from.second + length), previousSteps){
+        data class Vertical(override val from : Pos, val length : Int, override val previousSteps: Int) : Line(from, from.copy(second = from.second + length), previousSteps){
             val x : Int = from.first
             val y : IntRange = Pos(from.second, to.second).toRange()
         }

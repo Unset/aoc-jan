@@ -6,7 +6,7 @@ import xpair.*
 class Day6 : Day(6) {
 
     val orbitList by lazy {
-        inputList.map { it.split(')').onlyTwo().toOrbit() }
+        inputList.map { it.split(')').toDuo().toOrbit() }
     }
 
     override fun partOne(): String {
@@ -20,7 +20,7 @@ class Day6 : Day(6) {
 
     override fun partTwo(): String {
 
-        val paths = ("YOU" two "SAN")
+        val paths = ("YOU" duo "SAN")
             .both {orbitList.find(it).path(orbitList)}
 
         val commonPathLength = paths
@@ -45,7 +45,7 @@ class Day6 : Day(6) {
 
         fun Iterable<Orbit>.find(name : String) = first {it.name == name}
 
-        fun Two<String>.toOrbit() = Orbit(second, first unelvis "COM")
+        fun Duo<String>.toOrbit() = Orbit(second, first unelvis "COM")
 
     }
 

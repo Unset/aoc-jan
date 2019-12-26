@@ -7,7 +7,7 @@ import xpair.*
 
 class Day4 : Day(4) {
 
-    val inputRange by lazy {inputString.split('-').onlyTwo().both { it.toInt() }.toRange().map{it.toString()}}
+    val inputRange by lazy {inputString.split('-').toDuo().both { it.toInt() }.toRange().map{it.toString()}}
 
 
     override fun partOne(): String {
