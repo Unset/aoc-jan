@@ -1,5 +1,6 @@
 package days
 
+import util.gcd
 import xpair.*
 import kotlin.math.absoluteValue
 
@@ -20,6 +21,12 @@ val Space.energy get() = allThree { it.absoluteValue }.sum()
 
 
 data class Moon(val pos : Space, val vel : Space = ZeroSpace) {
+
+    fun toUniMoons() = Trio(
+        UniMoon(pos.first,vel.first),
+        UniMoon(pos.second, vel.second),
+        UniMoon(pos.third, vel.third )
+    )
 
     val energy get() = pos.energy * vel.energy
 
@@ -53,6 +60,8 @@ data class Galaxy(val moons : List<Moon>){
 
     }
 
+    fun toUni(): Trio<UniGalaxy> = moons.map {it.toUniMoons()}.unzip().allThree {UniGalaxy(it)}
+
 }
 
 class Day12 : Day(12) {
@@ -74,7 +83,28 @@ class Day12 : Day(12) {
     override fun partTwo(): String {
 
 
-        return "not found"
+        var uniGalaxies = startGalaxy.toUni()
+
+        var rotations = uniGalaxies.allThree { galaxy ->
+
+            var count = 1
+            var tempGalaxy = galaxy.step()
+            while (galaxy != tempGalaxy){
+                tempGalaxy = tempGalaxy.step()
+                count++
+                if (count % 1000 == 0) print("X")
+                if (count % 100_000 == 0) println("W")
+
+            }
+            println()
+            println(count)
+            count
+        }.toList()
+
+        var result = rotations.map{ it.toBigInteger()}.reduce{a,b -> (a * b) / gcd(a,b)}
+
+
+        return "${result}"
     }
 
     companion object {
@@ -86,6 +116,29 @@ class Day12 : Day(12) {
 
 }
 
+
+data class UniMoon(val pos : Int, val vel : Int){
+
+}
+
+data class UniGalaxy(val uniMoons : List<UniMoon>){
+
+    fun step() : UniGalaxy {
+        var tempMoons = uniMoons.toMutableList()
+
+        uniMoons.size.getCombinations().forEach { combo ->
+            val (left, right)  = combo.both {tempMoons[it].pos}.attract()
+
+            tempMoons[combo.first] = tempMoons[combo.first].let {moon -> moon.copy(vel = moon.vel + left)}
+            tempMoons[combo.second] = tempMoons[combo.second].let {moon -> moon.copy(vel = moon.vel + right)}
+        }
+
+        return copy(uniMoons = tempMoons.map{moon -> moon.copy(pos = moon.pos+moon.vel)})
+
+
+    }
+
+}
 
 
 

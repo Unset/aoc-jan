@@ -8,12 +8,12 @@ fun <E, R> Duo<E>.both(transform : (E) -> R) = Duo(transform(first), transform(s
 
 fun <E> Duo<E>.andSwapped() = Duo(this, swap())
 
-fun <E> Duo<E>.set(index : PairIndex, value : E) = when (index){
+fun <E> Duo<E>.set(index : DuoIndex, value : E) = when (index){
     First -> copy(first = value)
     Second -> copy(second = value)
 }
 
-operator fun <E> Duo<E>.get(index : PairIndex) = when (index){
+operator fun <E> Duo<E>.get(index : DuoIndex) = when (index){
     First -> first
     Second -> second
 }
@@ -37,3 +37,5 @@ fun <E>Duo<Trio<E>>.zip() : Trio<Duo<E>> = Trio(Duo(first.first,second.first), D
 
 
 fun <E>Trio<Duo<E>>.unzip() : Duo<Trio<E>> = Duo(Triple(first.first, second.first, third.first), Triple(first.second, second.second, third.second))
+
+fun <E>twice(subject: E) = Duo(subject, subject)
