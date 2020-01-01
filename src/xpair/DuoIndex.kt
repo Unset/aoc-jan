@@ -10,18 +10,18 @@ sealed class DuoIndex : Comparable<DuoIndex> {
     }
 }
 
-val bothIndices = Duo<DuoIndex>(First, Second)
+val duoIndices = Duo<DuoIndex>(DuoFirst, DuoSecond)
 
-object First : DuoIndex(){
+object DuoFirst : DuoIndex(){
     override val value = 0
 
     override val other: DuoIndex
-        get() = Second
+        get() = DuoSecond
 }
 
-object Second : DuoIndex(){
+object DuoSecond : DuoIndex(){
     override val value = 1
 
     override val other: DuoIndex
-        get() = First
+        get() = DuoFirst
 }

@@ -9,13 +9,13 @@ fun <E, R> Duo<E>.both(transform : (E) -> R) = Duo(transform(first), transform(s
 fun <E> Duo<E>.andSwapped() = Duo(this, swap())
 
 fun <E> Duo<E>.set(index : DuoIndex, value : E) = when (index){
-    First -> copy(first = value)
-    Second -> copy(second = value)
+    DuoFirst -> copy(first = value)
+    DuoSecond -> copy(second = value)
 }
 
 operator fun <E> Duo<E>.get(index : DuoIndex) = when (index){
-    First -> first
-    Second -> second
+    DuoFirst -> first
+    DuoSecond -> second
 }
 
 fun <E> Duo<E>.areEqual() = first == second

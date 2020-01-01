@@ -2,6 +2,8 @@ package december
 
 import collectionutils.Tape
 import collectionutils.setIndex
+import xpair.Trio
+import xpair.toTrio
 import java.math.BigInteger
 
 data class BigMachine(val tape : Tape, val position : BigInteger = BigInteger.ZERO, val base : BigInteger = BigInteger.ZERO, val done : Boolean = false, val input : List<BigInteger> = emptyList(), val output : List<BigInteger> = emptyList()) {
@@ -36,6 +38,16 @@ data class BigMachine(val tape : Tape, val position : BigInteger = BigInteger.ZE
             machine = machine.next()
         }
     }
+
+    fun runTillThreeOutput() : Pair<BigMachine, Trio<BigInteger>?>{
+        var machine = this.copy(output = emptyList())
+        while (true){
+            if (machine.done) return Pair(machine, null)
+            if (machine.output.size == 3) return Pair(machine, machine.output.toTrio())
+            machine = machine.next()
+        }
+    }
+
 
     val opcode : Int
         get() = tape[position].toInt() % 100

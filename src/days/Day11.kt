@@ -11,9 +11,7 @@ import kotlin.math.absoluteValue
 class Day11 : Day(11) {
 
 
-    val tape : Tape by lazy {
-        Tape(inputString.split(',').mapIndexed {index, s -> index.toBigInteger() to BigInteger(s) }.toMap())
-    }
+    val tape by lazy { Tape.fromString(inputString)}
 
     val machine by lazy {BigMachine(tape)}
 

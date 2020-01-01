@@ -22,11 +22,7 @@ val Space.energy get() = allThree { it.absoluteValue }.sum()
 
 data class Moon(val pos : Space, val vel : Space = ZeroSpace) {
 
-    fun toUniMoons() = Trio(
-        UniMoon(pos.first,vel.first),
-        UniMoon(pos.second, vel.second),
-        UniMoon(pos.third, vel.third )
-    )
+    fun toUniMoons() = trioIndices.allThree {UniMoon(pos[it], vel[it])}
 
     val energy get() = pos.energy * vel.energy
 
