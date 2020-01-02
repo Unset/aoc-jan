@@ -24,7 +24,7 @@ fun Pos.getQuadrantCode() : QCode = when (both {it.compareZero()}){
     Duo(Less, Equal) -> Pair(6, 0.0)
     Duo(Less, Less) -> Pair(7, -getUnit().second)
     else -> throw Exception("Unknown quadrant")
-}.toCompair()
+}.adapt()
 
 fun Pos.getUnit() : Duo<Double> {
     val diagonal = sqrt(both{ it * it}.let {it.first + it.second}.toDouble())
@@ -129,7 +129,7 @@ class Day10 : Day(10) {
         }
 
         (0..7).forEach {sector ->
-            println(killList.map {it -> it.simplified.getQuadrantCode().first}.count {it == sector})
+            println(killList.map {it -> it.simplified.getQuadrantCode().pairFirst}.count {it == sector})
         }
 
         println(killList)

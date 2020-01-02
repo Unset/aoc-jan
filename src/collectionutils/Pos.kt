@@ -9,6 +9,8 @@ import kotlin.math.absoluteValue
 
 typealias Pos = Duo<Int>
 
+val origin = Pos(0,0)
+
 fun Pos.toRange() : IntRange {
     return this.sort().let {IntRange(it.first, it.second)}
 }

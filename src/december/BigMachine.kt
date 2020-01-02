@@ -23,10 +23,11 @@ data class BigMachine(val tape : Tape, val position : BigInteger = BigInteger.ZE
         return machine
     }
 
-    fun runTillOutput() : BigMachine{
+    fun runTillOutput() : Pair<BigMachine, BigInteger?>{
         var machine = this.copy(output = emptyList())
         while (true){
-            if (machine.done || machine.output.isNotEmpty()) return machine
+            val outputVal = machine.output.firstOrNull()
+            if (machine.done || outputVal != null) return Pair(machine, outputVal)
             machine = machine.next()
         }
     }
