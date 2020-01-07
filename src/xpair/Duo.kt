@@ -20,6 +20,8 @@ operator fun <E> Duo<E>.get(index : DuoIndex) = when (index){
 
 fun <E> Duo<E>.areEqual() = first == second
 
+
+
 operator fun <E> Duo<E>.contains(element : E) = first == element || second == element
 
 fun <E> Duo<E>.containsAll(elements : Collection<E>) = elements.all {it in this}
@@ -39,3 +41,4 @@ fun <E>Duo<Trio<E>>.zip() : Trio<Duo<E>> = Trio(Duo(first.first,second.first), D
 fun <E>Trio<Duo<E>>.unzip() : Duo<Trio<E>> = Duo(Triple(first.first, second.first, third.first), Triple(first.second, second.second, third.second))
 
 fun <E>twice(subject: E) = Duo(subject, subject)
+

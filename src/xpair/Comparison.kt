@@ -45,3 +45,13 @@ infix fun <T : Comparable<T>> T.compare(other: T) : Comparison {
 fun Int.compareZero() : Comparison {
     return fromInt(this)
 }
+
+fun Comparison.tieBreak(breaker : () -> Comparison) = when (this){
+    Greater -> Greater
+    Less -> Less
+    Equal -> breaker()
+}
+
+val Comparison.equal get() = this == Equal
+val Comparison.greater get() = this == Greater
+val Comparison.less get() = this == Less

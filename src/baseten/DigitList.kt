@@ -1,5 +1,10 @@
 package baseten
 
+import xpair.Equal
+import xpair.Greater
+import xpair.Less
+import xpair.compare
+
 fun String.toDigits() : List<Digit> {
     return map {it.onlyDigit()}
 }

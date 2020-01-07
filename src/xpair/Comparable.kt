@@ -14,3 +14,13 @@ fun <E : Comparable<E>> Duo<E>.max() : E {
 fun <E : Comparable<E>> Duo<E>.min() : E {
     return toList().min()!!
 }
+
+val <E : Comparable<E>> Duo<E>.comparison get() = first compare second
+
+
+val <E : Comparable<E>> Duo<E?>.nullLowComparison : Comparison get()  = when {
+    bothNull() -> Equal
+    first == null -> Less
+    second == null -> Greater
+    else -> first!! compare second!!
+}
