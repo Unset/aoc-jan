@@ -1,9 +1,12 @@
 package days
 
+import nl.janvanrosmalen.natural.Equal
+import nl.janvanrosmalen.natural.Greater
+import nl.janvanrosmalen.natural.Less
+import nl.janvanrosmalen.natural.compare
 import util.progressor
 import xpair.*
 import java.math.BigInteger
-import kotlin.math.floor
 
 class Day14 : Day(14) {
 

@@ -1,5 +1,9 @@
 package xpair
 
+import nl.janvanrosmalen.natural.BitZero
+import nl.janvanrosmalen.natural.Bit
+import nl.janvanrosmalen.natural.BitOne
+
 typealias Duo<E> = Pair<E, E>
 
 infix fun <T> T.duo(other : T) = Duo(this, other)
@@ -8,14 +12,14 @@ fun <E, R> Duo<E>.both(transform : (E) -> R) = Duo(transform(first), transform(s
 
 fun <E> Duo<E>.andSwapped() = Duo(this, swap())
 
-fun <E> Duo<E>.set(index : DuoIndex, value : E) = when (index){
-    DuoFirst -> copy(first = value)
-    DuoSecond -> copy(second = value)
+fun <E> Duo<E>.set(index : Bit, value : E) = when (index){
+    BitZero -> copy(first = value)
+    BitOne -> copy(second = value)
 }
 
-operator fun <E> Duo<E>.get(index : DuoIndex) = when (index){
-    DuoFirst -> first
-    DuoSecond -> second
+operator fun <E> Duo<E>.get(index : Bit) = when (index){
+    BitZero -> first
+    BitOne -> second
 }
 
 fun <E> Duo<E>.areEqual() = first == second

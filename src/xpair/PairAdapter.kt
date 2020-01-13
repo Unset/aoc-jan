@@ -1,5 +1,10 @@
 package xpair
 
+import nl.janvanrosmalen.natural.Equal
+import nl.janvanrosmalen.natural.Greater
+import nl.janvanrosmalen.natural.Less
+import nl.janvanrosmalen.natural.compare
+
 interface PairAdapter<out A, out B>{
 
     operator fun component1() : A
@@ -24,7 +29,7 @@ private class CompairImpl<A : Comparable<A>, B : Comparable<B>>(private val firs
             Greater -> Greater
             Less -> Less
             Equal -> this.pairSecond compare other.pairSecond
-        }.value
+        }.int
     }
 
     override fun component1() = first

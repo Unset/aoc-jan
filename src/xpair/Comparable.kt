@@ -1,5 +1,7 @@
 package xpair
 
+import nl.janvanrosmalen.natural.*
+
 fun <E : Comparable<E>> Duo<E>.sort() : Duo<E> {
     return when (first compare second){
         Greater -> swap()
@@ -18,7 +20,8 @@ fun <E : Comparable<E>> Duo<E>.min() : E {
 val <E : Comparable<E>> Duo<E>.comparison get() = first compare second
 
 
-val <E : Comparable<E>> Duo<E?>.nullLowComparison : Comparison get()  = when {
+val <E : Comparable<E>> Duo<E?>.nullLowTrit : Trit
+    get()  = when {
     bothNull() -> Equal
     first == null -> Less
     second == null -> Greater

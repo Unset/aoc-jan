@@ -3,6 +3,7 @@ package days
 import collectionutils.Pos
 import collectionutils.minus
 import collectionutils.plus
+import nl.janvanrosmalen.natural.*
 import util.gcd
 import xpair.*
 import kotlin.math.absoluteValue
@@ -61,7 +62,7 @@ class Day10 : Day(10) {
             val defin = if (intermediate == Equal) {
                 this.divisor compare other.divisor
             } else intermediate
-            return defin.value
+            return defin.int
         }
 
         val diagonal = sqrt(simplified.both{ it * it}.let {it.first + it.second}.toDouble())

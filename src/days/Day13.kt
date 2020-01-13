@@ -5,10 +5,12 @@ import collectionutils.Tape
 import collectionutils.drawWorld
 import collectionutils.setValue
 import december.BigMachine
-import december.MachineState
+import nl.janvanrosmalen.natural.Equal
+import nl.janvanrosmalen.natural.Greater
+import nl.janvanrosmalen.natural.Less
+import nl.janvanrosmalen.natural.compare
 import xpair.*
 import java.lang.Thread.sleep
-import java.math.BigInteger
 
 class Day13 : Day(13) {
 

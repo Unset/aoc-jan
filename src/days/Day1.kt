@@ -1,9 +1,9 @@
 package days
 
-import xpair.Equal
-import xpair.Greater
-import xpair.Less
-import xpair.compareZero
+import nl.janvanrosmalen.natural.Equal
+import nl.janvanrosmalen.natural.Greater
+import nl.janvanrosmalen.natural.Less
+import nl.janvanrosmalen.natural.compareZero
 
 class Day1 : Day(1) {
 

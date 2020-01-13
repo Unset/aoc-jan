@@ -1,10 +1,12 @@
 package xpair
 
-sealed class TrioIndex : Comparable<DuoIndex> {
+import nl.janvanrosmalen.natural.Bit
+
+sealed class TrioIndex : Comparable<Bit> {
     abstract val value : Int
 
-    override fun compareTo(other: DuoIndex): Int {
-        return value.compareTo(other.value)
+    override fun compareTo(other: Bit): Int {
+        return value.compareTo(other.int)
     }
 }
 

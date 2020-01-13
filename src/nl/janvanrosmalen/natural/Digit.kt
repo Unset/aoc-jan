@@ -1,4 +1,4 @@
-package baseten
+package nl.janvanrosmalen.natural
 
 enum class Digit {
     ZERO,
@@ -16,7 +16,7 @@ enum class Digit {
         return ordinal.toString()
     }
 
-    fun toInt() = ordinal
+    val int get() = ordinal
 
 
 

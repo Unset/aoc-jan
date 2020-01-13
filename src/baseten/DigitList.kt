@@ -1,9 +1,6 @@
 package baseten
 
-import xpair.Equal
-import xpair.Greater
-import xpair.Less
-import xpair.compare
+import nl.janvanrosmalen.natural.Digit
 
 fun String.toDigits() : List<Digit> {
     return map {it.onlyDigit()}

@@ -1,5 +1,9 @@
 package days
 
+import nl.janvanrosmalen.natural.Equal
+import nl.janvanrosmalen.natural.Greater
+import nl.janvanrosmalen.natural.Less
+import nl.janvanrosmalen.natural.compare
 import util.gcd
 import xpair.*
 import kotlin.math.absoluteValue
