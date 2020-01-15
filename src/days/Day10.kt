@@ -3,7 +3,7 @@ package days
 import collectionutils.Pos
 import collectionutils.minus
 import collectionutils.plus
-import nl.janvanrosmalen.natural.*
+import nl.janvanrosmalen.compare.*
 import util.gcd
 import xpair.*
 import kotlin.math.absoluteValue

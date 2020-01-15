@@ -1,9 +1,9 @@
 package xpair
 
-import nl.janvanrosmalen.natural.Equal
-import nl.janvanrosmalen.natural.Greater
-import nl.janvanrosmalen.natural.Less
-import nl.janvanrosmalen.natural.compare
+import nl.janvanrosmalen.compare.Equal
+import nl.janvanrosmalen.compare.Greater
+import nl.janvanrosmalen.compare.Less
+import nl.janvanrosmalen.compare.compare
 
 fun <T> List<T>.chain() : List<Duo<T>> = when (size){
         0,1 -> emptyList()

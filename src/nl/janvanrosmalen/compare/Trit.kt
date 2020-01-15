@@ -1,4 +1,4 @@
-package nl.janvanrosmalen.natural
+package nl.janvanrosmalen.compare
 
 sealed class Trit() : Comparable<Trit> {
 

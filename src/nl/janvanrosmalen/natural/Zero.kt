@@ -1,6 +1,9 @@
 package nl.janvanrosmalen.natural
 
-object Zero : Comparable<Zero> {
+import java.math.BigInteger
+
+object Zero : Comparable<Zero>, Zeroable {
     override fun compareTo(other: Zero) = 0
-    const val int = 0
+    override fun toString() = "0"
+    override val bigInteger = BigInteger.ZERO
 }

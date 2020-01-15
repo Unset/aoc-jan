@@ -1,13 +1,6 @@
 package nl.janvanrosmalen.natural
 
-import java.math.BigInteger
-
-interface Digitable {
-    val digit : Digit
-    val int : Int
-    val long : Long
-    val bigInteger : BigInteger
-    val char : Char
-    val string : String
-
+interface Digitable : NaturalInt{
+    override val digit : Digit
+    override val int : Int get() = digit.int
 }

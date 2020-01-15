@@ -1,6 +1,6 @@
 package xpair
 
-import nl.janvanrosmalen.natural.*
+import nl.janvanrosmalen.compare.*
 
 fun <E : Comparable<E>> Duo<E>.sort() : Duo<E> {
     return when (first compare second){

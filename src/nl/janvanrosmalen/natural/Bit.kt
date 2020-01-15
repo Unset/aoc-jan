@@ -3,12 +3,18 @@ package nl.janvanrosmalen.natural
 import xpair.Duo
 import java.math.BigInteger
 
-sealed class Bit : Comparable<Bit>, Digitable {
+sealed class Bit(override val int : Int) : Comparable<Bit>, Bitable {
     abstract val other : Bit
+
+    override val bit: Bit get() = this
+
+    abstract override val digit : Digit
 
     override fun compareTo(other: Bit): Int {
         return int.compareTo(other.int)
     }
+
+    //abstract override fun toString() : String
 }
 
 val selfPair = Duo<Bit>(
@@ -16,26 +22,18 @@ val selfPair = Duo<Bit>(
     BitOne
 )
 
-object BitZero : Bit(){
-    override val int = 0
-    override val long = 0L
-    override val bigInteger = BigInteger.ZERO!!
-    override val char = '0'
-    override val string = "0"
-    override val digit = Digit.ZERO
-
+object BitZero : Bit(0){
+    override val digit = DigitZero
+    override fun toString() = "0"
+    override val zero: Zero = Zero
     override val other: Bit
         get() = BitOne
 }
 
-object BitOne : Bit(){
-    override val int = 1
-    override val long = 1L
-    override val bigInteger = BigInteger.ONE!!
-    override val char = '1'
-    override val string = "1"
-    override val digit = Digit.ONE
-
+object BitOne : Bit(1){
+    override val digit = DigitOne
+    override val zero = null
+    override fun toString() = "1"
     override val other: Bit
         get() = BitZero
 

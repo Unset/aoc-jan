@@ -1,9 +1,9 @@
 package days
 
-import nl.janvanrosmalen.natural.Equal
-import nl.janvanrosmalen.natural.Greater
-import nl.janvanrosmalen.natural.Less
-import nl.janvanrosmalen.natural.compare
+import nl.janvanrosmalen.compare.Equal
+import nl.janvanrosmalen.compare.Greater
+import nl.janvanrosmalen.compare.Less
+import nl.janvanrosmalen.compare.compare
 import util.progressor
 import xpair.*
 import java.math.BigInteger
