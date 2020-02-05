@@ -18,3 +18,6 @@ fun <T> permute(input: List<T>): List<List<T>> {
 
 fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
 fun gcd(a: BigInteger, b: BigInteger): BigInteger = if (b.signum() == 0) a else gcd(b, a % b)
+
+//https://stackoverflow.com/questions/16336500/kotlin-ternary-conditional-operator
+infix fun <T> Boolean.then(param: () -> T): T? = if (this) param() else null
