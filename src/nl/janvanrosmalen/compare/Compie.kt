@@ -1,6 +1,6 @@
 package nl.janvanrosmalen.compare
 
-sealed class Trit() : Comparable<Trit> {
+sealed class Compie() : Comparable<Compie> {
 
     abstract val int : Int
 
@@ -8,23 +8,23 @@ sealed class Trit() : Comparable<Trit> {
         return int.toString()
     }
 
-    override fun compareTo(other: Trit): Int {
+    override fun compareTo(other: Compie): Int {
         return int.compareTo(other.int)
     }
 
 }
 
-object Equal : Trit() {
+object Equal : Compie() {
 
     override val int = 0
 }
 
-object Greater : Trit() {
+object Greater : Compie() {
 
     override val int = 1
 }
 
-object Less : Trit() {
+object Less : Compie() {
 
     override val int = -1
 }
@@ -32,7 +32,7 @@ object Less : Trit() {
 
 
 
-fun fromInt(i : Int) : Trit {
+fun fromInt(i : Int) : Compie {
     return when {
         i>0 -> Greater
         i<0 -> Less
@@ -40,21 +40,21 @@ fun fromInt(i : Int) : Trit {
     }
 }
 
-infix fun <T : Comparable<T>> T.compare(other: T) : Trit {
+infix fun <T : Comparable<T>> T.compare(other: T) : Compie {
     return fromInt(this.compareTo(other))
 }
 
 
-fun Int.compareZero() : Trit {
+fun Int.compareZero() : Compie {
     return fromInt(this)
 }
 
-fun Trit.tieBreak(breaker : () -> Trit) = when (this){
+fun Compie.tieBreak(breaker : () -> Compie) = when (this){
     Greater -> Greater
     Less -> Less
     Equal -> breaker()
 }
 
-val Trit.equal get() = this == Equal
-val Trit.greater get() = this == Greater
-val Trit.less get() = this == Less
+val Compie.equal get() = this == Equal
+val Compie.greater get() = this == Greater
+val Compie.less get() = this == Less

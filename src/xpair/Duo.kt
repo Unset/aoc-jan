@@ -1,8 +1,8 @@
 package xpair
 
-import nl.janvanrosmalen.human.BitOne
-import nl.janvanrosmalen.human.BitZero
-import nl.janvanrosmalen.human.XBit
+import nl.janvanrosmalen.human.natural.BitOne
+import nl.janvanrosmalen.human.natural.BitZero
+import nl.janvanrosmalen.human.natural.XBit
 
 typealias Duo<E> = Pair<E, E>
 

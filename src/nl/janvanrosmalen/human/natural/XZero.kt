@@ -1,4 +1,4 @@
-package nl.janvanrosmalen.human
+package nl.janvanrosmalen.human.natural
 
 object XZero : Zero {
     override val xZero = XZero
@@ -10,6 +10,7 @@ object XZero : Zero {
     override val digit = DigitZero
 
     override val long = 0L
+    override val natural = LongNatural(0L)
 
     override fun hashCode() = long.hashCode()
     override fun equals(other: Any?) = long == other

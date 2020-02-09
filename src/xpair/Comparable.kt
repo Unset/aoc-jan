@@ -20,7 +20,7 @@ fun <E : Comparable<E>> Duo<E>.min() : E {
 val <E : Comparable<E>> Duo<E>.comparison get() = first compare second
 
 
-val <E : Comparable<E>> Duo<E?>.nullLowTrit : Trit
+val <E : Comparable<E>> Duo<E?>.nullLowTrit : Compie
     get()  = when {
     bothNull() -> Equal
     first == null -> Less

@@ -1,4 +1,4 @@
-package nl.janvanrosmalen.human
+package nl.janvanrosmalen.human.natural
 
 interface Zeroable : Bitable {
     val zero : Zero
