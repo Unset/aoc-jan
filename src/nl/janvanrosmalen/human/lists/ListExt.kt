@@ -1,5 +1,5 @@
 package nl.janvanrosmalen.human.lists
 
-import nl.janvanrosmalen.human.natural.Natural
+import nl.janvanrosmalen.human.natural.NaturalComparable
 
-operator fun <E>List<E>.get(index : Natural) : E = get(index.long.toInt())
+operator fun <E>List<E>.get(index : NaturalComparable) : E = get(index.long.toInt())

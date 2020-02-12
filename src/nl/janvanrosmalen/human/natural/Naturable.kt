@@ -1,14 +1,15 @@
 package nl.janvanrosmalen.human.natural
 
 interface Naturable {
-    val natural : Natural
+    val natural : NaturalComparable
 
-    val xZero : XZero?
+    val zero : Zero?
 
-    val xBit : XBit?
+    val bit : Bit?
 
-    val xDigit : XDigit?
+    val digit : Digit?
 
     val long : Long?
 
+    val predecessor : Naturable?
 }

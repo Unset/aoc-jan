@@ -1,6 +1,6 @@
 package nl.janvanrosmalen.human.natural
 
-interface XZeroable : XBitable,
+interface ZeroComparable : Comparable<ZeroComparable>,
     Zeroable {
-    val xZero : XZero
+
 }

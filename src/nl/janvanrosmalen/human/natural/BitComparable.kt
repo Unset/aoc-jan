@@ -1,6 +1,6 @@
 package nl.janvanrosmalen.human.natural
 
-interface XBitable : XDigitable,
+interface BitComparable : Comparable<BitComparable>,
     Bitable {
-    val xBit : XBit
+
 }

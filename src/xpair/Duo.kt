@@ -2,7 +2,7 @@ package xpair
 
 import nl.janvanrosmalen.human.natural.BitOne
 import nl.janvanrosmalen.human.natural.BitZero
-import nl.janvanrosmalen.human.natural.XBit
+import nl.janvanrosmalen.human.natural.Bit
 
 typealias Duo<E> = Pair<E, E>
 
@@ -12,12 +12,12 @@ fun <E, R> Duo<E>.both(transform : (E) -> R) = Duo(transform(first), transform(s
 
 fun <E> Duo<E>.andSwapped() = Duo(this, swap())
 
-fun <E> Duo<E>.set(index : XBit, value : E) = when (index){
+fun <E> Duo<E>.set(index : Bit, value : E) = when (index){
     BitZero -> copy(first = value)
     BitOne -> copy(second = value)
 }
 
-operator fun <E> Duo<E>.get(index : XBit) = when (index){
+operator fun <E> Duo<E>.get(index : Bit) = when (index){
     BitZero -> first
     BitOne -> second
 }
