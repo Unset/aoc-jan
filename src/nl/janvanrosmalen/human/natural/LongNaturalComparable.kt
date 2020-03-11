@@ -1,6 +1,6 @@
 package nl.janvanrosmalen.human.natural
 
-internal class LongNaturalComparable(override val long : Long) : NaturalComparable, Longable {
+public class LongNaturalComparable(override val long : Long) : NaturalComparable, Longable {
     override val predecessor: Naturable?
         get() = if (long == 0L) null else LongNaturalComparable(long - 1)
 
