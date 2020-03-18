@@ -1,9 +1,9 @@
 package nl.janvanrosmalen.batshit
 
 interface BatHeader {
-    val part : Int
+    val part : Boolean
     val specialResource : Boolean
-    val resourceNumber : Boolean
+    val resource : Boolean
     val patch : Boolean
     val final : Boolean
     val padding : Boolean
