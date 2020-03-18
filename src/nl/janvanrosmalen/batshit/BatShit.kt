@@ -62,8 +62,7 @@ object BatShit {
         val (head, tail) = (cursor ?: return null).takePositiveInt()
         return when (head) {
             0x80 -> null
-            in 0x00..0x7F -> Pair(head.toLong(), tail)
-            else -> readFollowUp(tail ?: return null, head.toLong())
+            else -> readFollowUp(cursor, 0L)
         }
 
     }
@@ -71,9 +70,9 @@ object BatShit {
     tailrec fun readFollowUp(cursor : ReadCursor<Byte>, buffer : Long) : Pair<Long, ReadCursor<Byte>?>? {
         val (head, tail) = cursor.takePositiveInt()
         return if (head >= 0x80) {
-            Pair((buffer shl 7) + head - 0x80, tail)
+            readFollowUp(tail ?: return null, (buffer shl 7) + head - 0x80)
         } else {
-            readFollowUp(tail ?: return null, (buffer shl 7) + head)
+            Pair((buffer shl 7) + head, tail)
         }
     }
 
@@ -122,13 +121,15 @@ object BatShit {
     }
 
     fun createVlq(number : Long) : List<Byte> {
-        if (number < 0x80){
-            return listOf(number.toByte())
-        } else {
-            throw Exception()
-        }
-
+        return createVlqPart(number shr 7) + listOf((number and 0x07F).toByte())
     }
+
+    fun createVlqPart(number : Long) : List<Byte> {
+        return if (number == 0L) emptyList()
+        else createVlqPart(number shr 7) + listOf(((number and 0x7F) + 0x80).toByte())
+    }
+
+
 }
 
 fun ByteArray.toHexString() = joinToString("") { "%02x".format(it) }
@@ -136,7 +137,7 @@ fun ByteArray.toHexString() = joinToString("") { "%02x".format(it) }
 fun main(args : Array<String>) {
     val message = "A"
 
-    val encoded = BatShit.writeSinglePart(3,5,message.toByteArray().toList())
+    val encoded = BatShit.writeSinglePart(1234567,5,message.toByteArray().toList())
 
     println(encoded?.toByteArray()?.toHexString() ?: "Encoding failed!")
 
